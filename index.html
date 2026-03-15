@@ -9,6 +9,7 @@
       href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
       rel="stylesheet"
     />
+    <link rel="icon" href="favicon.ico" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -16,116 +17,112 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <!-- NAV -->
-    <nav id="mainNav">
-      <a href="#home" class="nav-logo">Ibnu<em>.</em></a>
+    <nav>
+      <a href="#home" class="logo">Ibnu<em>.</em></a>
       <ul class="nav-links" id="navLinks">
         <li><a href="#about">About</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li>
-          <a href="https://wa.me/6285186660950" class="nav-hire">Hire Me ↗</a>
-        </li>
       </ul>
       <div class="nav-right">
-        <button class="theme-btn" id="themeBtn" title="Toggle theme">🌙</button>
-        <div class="hamburger" id="hamburger">
-          <span></span><span></span><span></span>
-        </div>
+        <a href="https://wa.me/6285186660950" target="_blank" class="hire-btn"
+          >Hire Me ↗</a
+        >
+        <button class="theme-btn" id="themeBtn">🌙</button>
+        <div class="ham" id="ham"><span></span><span></span><span></span></div>
       </div>
     </nav>
 
     <!-- HERO -->
     <section class="hero" id="home">
-      <div class="hero-bg"></div>
-      <div class="hero-photo-wrap">
-        <img src="img/Miror-Image.jpg" alt="Ibnu Zaky" />
+      <div class="hero-bg">
+        <img src="Ibnu-Lrt.jpg" alt="" />
       </div>
-      <p class="hero-eyebrow reveal">
-        Available for freelance — Kota Depok, Indonesia
-      </p>
-      <h1 class="hero-heading reveal d1">
-        <span>Ibnu</span>
-        <span class="name-ghost">Zaky</span>
-      </h1>
-      <p class="hero-sub reveal d2">
-        <span id="typedText"></span><br />
-        Building clean, functional &amp; beautiful web experiences from idea to
-        pixel.
-      </p>
-      <div class="hero-btns reveal d3">
-        <a href="#projects" class="btn-accent">See My Work</a>
-        <a href="#contact" class="btn-ghost">Get In Touch →</a>
+      <div class="hero-left">
+        <p class="eyebrow r">Available for freelance · Depok, Indonesia</p>
+        <h1 class="h1 r d1">
+          <span>Ibnu</span>
+          <span class="ghost">Zaky</span>
+        </h1>
+        <p class="sub r d2">
+          <span id="typed"></span><br />
+          Membangun pengalaman web yang bersih, fungsional &amp; indah dari ide
+          ke piksel.
+        </p>
+        <div class="btns r d3">
+          <a href="#projects" class="btn-f">Lihat Karya</a>
+          <a href="#contact" class="btn-o">Hubungi →</a>
+        </div>
       </div>
-      <div class="hero-scroll-hint reveal d4">
-        <div class="scroll-bar"></div>
-        <span>Scroll</span>
+      <div class="hero-right">
+        <div class="profile-box">
+          <img src="Miror-Image.jpg" alt="Ibnu Zaky" />
+        </div>
       </div>
     </section>
 
     <!-- ABOUT -->
     <section class="section" id="about">
-      <p class="sec-label reveal">About Me</p>
-      <h2 class="sec-title reveal d1">Skills &<br />Experience</h2>
+      <p class="sec-lbl r">Tentang Saya</p>
+      <h2 class="sec-ttl r d1">Skill &amp;<br />Pengalaman</h2>
       <div class="about-grid">
         <div>
-          <p class="about-bio reveal">
-            Saya adalah Web Designer & Front End Developer yang berfokus pada
-            pengalaman digital yang menarik, fungsional, dan berorientasi
-            pengguna. Dengan penguasaan Figma, HTML, CSS, dan Bootstrap, saya
-            mampu membangun interface yang estetis sekaligus performa tinggi.
+          <p class="bio r">
+            Saya adalah Web Designer &amp; Front End Developer yang fokus
+            membangun pengalaman digital yang menarik dan berorientasi pengguna.
+            Dengan keahlian di Figma, HTML, CSS, dan Bootstrap, saya membuat
+            interface yang estetis sekaligus fungsional.
           </p>
-          <div class="stats-row">
-            <div class="stat reveal d1">
-              <div class="num">3+</div>
-              <div class="lbl">Projects</div>
+          <div class="stats">
+            <div class="stat r d1">
+              <div class="n">3+</div>
+              <div class="l">Projects</div>
             </div>
-            <div class="stat reveal d2">
-              <div class="num">2+</div>
-              <div class="lbl">Yrs Exp</div>
+            <div class="stat r d2">
+              <div class="n">2+</div>
+              <div class="l">Tahun Exp</div>
             </div>
-            <div class="stat reveal d3">
-              <div class="num">∞</div>
-              <div class="lbl">Passion</div>
+            <div class="stat r d3">
+              <div class="n">∞</div>
+              <div class="l">Passion</div>
             </div>
           </div>
         </div>
         <div class="skills">
-          <div class="reveal">
+          <div class="r">
             <div class="sk-row">
-              <span class="sk-name">Figma</span><span class="sk-val">90%</span>
+              <span class="sk-n">Figma</span><span class="sk-p">90%</span>
             </div>
             <div class="sk-track"><div class="sk-fill" data-w="90"></div></div>
           </div>
-          <div class="reveal d1">
+          <div class="r d1">
             <div class="sk-row">
-              <span class="sk-name">HTML</span><span class="sk-val">80%</span>
+              <span class="sk-n">HTML</span><span class="sk-p">80%</span>
             </div>
             <div class="sk-track"><div class="sk-fill" data-w="80"></div></div>
           </div>
-          <div class="reveal d2">
+          <div class="r d2">
             <div class="sk-row">
-              <span class="sk-name">CSS</span><span class="sk-val">80%</span>
+              <span class="sk-n">CSS</span><span class="sk-p">80%</span>
             </div>
             <div class="sk-track"><div class="sk-fill" data-w="80"></div></div>
           </div>
-          <div class="reveal d3">
+          <div class="r d3">
             <div class="sk-row">
-              <span class="sk-name">Bootstrap</span
-              ><span class="sk-val">80%</span>
+              <span class="sk-n">Bootstrap</span><span class="sk-p">80%</span>
             </div>
             <div class="sk-track"><div class="sk-fill" data-w="80"></div></div>
           </div>
-          <div class="reveal d4">
+          <div class="r d4">
             <div class="sk-row">
-              <span class="sk-name">Tailwind CSS</span
-              ><span class="sk-val">25%</span>
+              <span class="sk-n">Tailwind CSS</span
+              ><span class="sk-p">25%</span>
             </div>
             <div class="sk-track"><div class="sk-fill" data-w="25"></div></div>
           </div>
-          <div class="reveal d5">
+          <div class="r d5">
             <div class="sk-row">
-              <span class="sk-name">PHP</span><span class="sk-val">15%</span>
+              <span class="sk-n">PHP</span><span class="sk-p">15%</span>
             </div>
             <div class="sk-track"><div class="sk-fill" data-w="15"></div></div>
           </div>
@@ -135,26 +132,23 @@
 
     <!-- PROJECTS -->
     <section class="section section-alt" id="projects">
-      <p class="sec-label reveal">My Work</p>
-      <h2 class="sec-title reveal d1">Latest<br />Projects</h2>
-
-      <div class="filter-row reveal d2">
-        <button class="f-btn active" data-filter="all">All</button>
+      <p class="sec-lbl r">Karya Saya</p>
+      <h2 class="sec-ttl r d1">Project<br />Terbaru</h2>
+      <div class="filter-row r d2">
+        <button class="f-btn active" data-filter="all">Semua</button>
         <button class="f-btn" data-filter="frontend">Front End</button>
         <button class="f-btn" data-filter="design">Apps Design</button>
         <button class="f-btn" data-filter="teamwork">Team Work</button>
       </div>
-
-      <div class="cards" id="cards">
-        <!-- Card 1 -->
-        <div class="card reveal" data-cat="frontend teamwork">
+      <div class="cards">
+        <div class="card r" data-cat="frontend teamwork">
           <div class="card-thumb">
-            <img src="img/indomontir.png" alt="Indomontir" />
+            <img src="Screenshot_2024-04-14_083224.png" alt="Indomontir" />
           </div>
           <div class="card-body">
             <div class="card-tags">
-              <span class="tag">Front End</span>
-              <span class="tag">Team Work</span>
+              <span class="tag">Front End</span
+              ><span class="tag">Team Work</span>
             </div>
             <h3 class="card-title">Indomontir — Website Service Mobil</h3>
             <p class="card-desc">
@@ -164,20 +158,20 @@
             <div class="card-foot">
               <span class="card-date">Nov 2023</span>
               <a href="https://indomontir.id/" target="_blank" class="card-link"
-                ><i class="fa fa-arrow-up-right-from-square"></i
+                ><i class="fa-solid fa-arrow-up-right-from-square"></i
               ></a>
             </div>
           </div>
         </div>
-        <!-- Card 2 -->
-        <div class="card reveal d1" data-cat="frontend teamwork">
+
+        <div class="card r d1" data-cat="frontend teamwork">
           <div class="card-thumb">
-            <img src="img/foranggis.png" alt="Foranggis" />
+            <img src="Screenshot_2024-04-14_084004.png" alt="Foranggis" />
           </div>
           <div class="card-body">
             <div class="card-tags">
-              <span class="tag">Front End</span>
-              <span class="tag">Team Work</span>
+              <span class="tag">Front End</span
+              ><span class="tag">Team Work</span>
             </div>
             <h3 class="card-title">Foranggis — Child Aspiration Website</h3>
             <p class="card-desc">
@@ -187,35 +181,28 @@
             <div class="card-foot">
               <span class="card-date">Dec 2023</span>
               <a href="https://foranggis.com/" target="_blank" class="card-link"
-                ><i class="fa fa-arrow-up-right-from-square"></i
+                ><i class="fa-solid fa-arrow-up-right-from-square"></i
               ></a>
             </div>
           </div>
         </div>
-        <!-- Card 3 -->
-        <div class="card reveal d2" data-cat="design teamwork">
+
+        <div class="card r d2" data-cat="design teamwork">
           <div
             class="card-thumb"
-            style="
-              background: linear-gradient(135deg, #1a1a2e, #16213e);
-              font-size: 2rem;
-              letter-spacing: -1px;
-              font-family: &quot;Syne&quot;, sans-serif;
-              color: #c8f135;
-              font-weight: 800;
-            "
+            style="background: linear-gradient(135deg, #0a0a1a, #12122a)"
           >
-            INPEX<br /><span
-              style="font-size: 0.65rem; letter-spacing: 3px; color: #666"
-              >OIL & GAS</span
-            >
+            <div class="card-ph">
+              <span class="ph-t">INPEX</span>
+              <span class="ph-s">Oil &amp; Gas · MOC</span>
+            </div>
           </div>
           <div class="card-body">
             <div class="card-tags">
-              <span class="tag">Apps Design</span>
-              <span class="tag">Team Work</span>
+              <span class="tag">Apps Design</span
+              ><span class="tag">Team Work</span>
             </div>
-            <h3 class="card-title">Inpex Oil & Gas — MOC System</h3>
+            <h3 class="card-title">Inpex Oil &amp; Gas — MOC System</h3>
             <p class="card-desc">
               Desain aplikasi Management of Change untuk perusahaan minyak dan
               gas internasional Inpex.
@@ -223,7 +210,7 @@
             <div class="card-foot">
               <span class="card-date">Dec 2023</span>
               <a href="#" class="card-link"
-                ><i class="fa fa-arrow-up-right-from-square"></i
+                ><i class="fa-solid fa-arrow-up-right-from-square"></i
               ></a>
             </div>
           </div>
@@ -233,51 +220,44 @@
 
     <!-- CONTACT -->
     <section class="section" id="contact">
-      <p class="sec-label reveal">Get In Touch</p>
-      <h2 class="sec-title reveal d1">Let's Work<br />Together</h2>
-      <div class="contact-inner">
-        <a href="mailto:ibnuzaky667@gmail.com" class="contact-email reveal d2"
+      <p class="sec-lbl r">Hubungi Saya</p>
+      <h2 class="sec-ttl r d1">Let's Work<br />Together</h2>
+      <div class="contact-wrap">
+        <a href="mailto:ibnuzaky667@gmail.com" class="contact-email r d2"
           >ibnuzaky667@gmail.com</a
         >
-        <div class="socials reveal d3">
-          <a
-            href="https://wa.me/6285186660950"
-            target="_blank"
-            class="social-link"
+        <div class="socials r d3">
+          <a href="https://wa.me/6285186660950" target="_blank" class="soc"
+            ><i class="fab fa-whatsapp"></i> WhatsApp</a
           >
-            <i class="fab fa-whatsapp"></i> WhatsApp
-          </a>
           <a
             href="https://www.instagram.com/ibnuzzkyy"
             target="_blank"
-            class="social-link"
+            class="soc"
+            ><i class="fab fa-instagram"></i> Instagram</a
           >
-            <i class="fab fa-instagram"></i> Instagram
-          </a>
           <a
             href="https://www.linkedin.com/in/ibnu-zaky/"
             target="_blank"
-            class="social-link"
+            class="soc"
+            ><i class="fab fa-linkedin-in"></i> LinkedIn</a
           >
-            <i class="fab fa-linkedin-in"></i> LinkedIn
-          </a>
           <a
             href="https://twitter.com/markopetualang"
             target="_blank"
-            class="social-link"
+            class="soc"
+            ><i class="fab fa-twitter"></i> Twitter</a
           >
-            <i class="fab fa-twitter"></i> Twitter
-          </a>
         </div>
       </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
-      <span class="footer-logo">Ibnu<em>.</em></span>
-      <p>© 2024 Ibnu Zaky. Kota Depok, Jawa Barat.</p>
-      <p>Designed & built with ❤️</p>
+      <span class="f-logo">Ibnu<em>.</em></span>
+      <p>© 2024 Ibnu Zaky · Kota Depok, Jawa Barat</p>
+      <p>Designed &amp; built with ❤️</p>
     </footer>
+
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
   </body>
