@@ -1,343 +1,260 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="id" data-theme="dark">
   <head>
-    <meta charset="utf-8" />
-    <title>Ibnu Zaky - Profile Portfolio</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta content="Free Website Template" name="keywords" />
-    <meta content="Free Website Template" name="description" />
-
-    <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon" />
-
-    <!-- Google Font -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ibnu Zaky — Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- CSS Libraries -->
-    <link
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
       rel="stylesheet"
     />
     <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
       rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <link href="lib/animate/animate.min.css" rel="stylesheet" />
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
-    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet" />
-
-    <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet" />
   </head>
-
-  <body data-spy="scroll" data-target=".navbar" data-offset="51">
-    <!-- Nav Bar Start -->
-    <div class="navbar navbar-expand-lg bg-light navbar-light">
-      <div class="container-fluid">
-        <a href="index.html" class="navbar-brand">Ibnu</a>
-        <button
-          type="button"
-          class="navbar-toggler"
-          data-toggle="collapse"
-          data-target="#navbarCollapse"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div
-          class="collapse navbar-collapse justify-content-between"
-          id="navbarCollapse"
-        >
-          <div class="navbar-nav ml-auto">
-            <a href="#home" class="nav-item nav-link active">Home</a>
-            <a href="#about" class="nav-item nav-link">About</a>
-            <a href="#blog" class="nav-item nav-link">Blog</a>
-            <a href="#footer" class="nav-item nav-link">Contact</a>
-          </div>
+  <body>
+    <!-- NAV -->
+    <nav id="mainNav">
+      <a href="#home" class="nav-logo">Ibnu<em>.</em></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li>
+          <a href="https://wa.me/6285186660950" class="nav-hire">Hire Me ↗</a>
+        </li>
+      </ul>
+      <div class="nav-right">
+        <button class="theme-btn" id="themeBtn" title="Toggle theme">🌙</button>
+        <div class="hamburger" id="hamburger">
+          <span></span><span></span><span></span>
         </div>
       </div>
-    </div>
-    <!-- Nav Bar End -->
+    </nav>
 
-    <!-- Hero Start -->
-    <div class="hero" id="home">
-      <div class="container-fluid">
-        <div class="row align-items-center">
-          <div class="col-sm-12 col-md-6">
-            <div class="hero-content">
-              <div class="hero-text">
-                <p>I'm</p>
-                <h1>Ibnu Zaky</h1>
-                <h2></h2>
-                <div class="typed-text">
-                  Web Designer, Web Developer, Front End Developer
-                </div>
-              </div>
-              <div class="hero-btn">
-                <a class="btn" href="#footer">Contact Me</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-12 col-md-6 d-none d-md-block">
-            <div class="hero-image">
-              <img src="img/Miror-Image.jpg" alt="Hero Image" />
-            </div>
-          </div>
-        </div>
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="hero-glow"></div>
+      <p class="hero-eyebrow reveal">
+        Available for freelance — Kota Depok, Indonesia
+      </p>
+      <h1 class="hero-heading reveal d1">
+        <span>Ibnu</span>
+        <span class="name-ghost">Zaky</span>
+      </h1>
+      <p class="hero-sub reveal d2">
+        <span id="typedText"></span><br />
+        Building clean, functional &amp; beautiful web experiences from idea to
+        pixel.
+      </p>
+      <div class="hero-btns reveal d3">
+        <a href="#projects" class="btn-accent">See My Work</a>
+        <a href="#contact" class="btn-ghost">Get In Touch →</a>
       </div>
-    </div>
-    <!-- Hero End -->
-
-    <!-- About Start -->
-    <div class="about wow fadeInUp mt-5" data-wow-delay="0.1s" id="about">
-      <div class="container-fluid">
-        <div class="about-content">
-          <div class="section-header text-center">
-            <p>Learn About Me</p>
-            <h2>Experience</h2>
-          </div>
-          <div class="about-text text-center">
-            <p>
-              This is my skill progress bar and also the programming languages
-              that I have mastered a little bit.
-            </p>
-          </div>
-          <div class="skills">
-            <div class="skill-name">
-              <p>Figma</p>
-              <p>90%</p>
-            </div>
-            <div class="progress">
-              <div
-                class="progress-bar"
-                role="progressbar"
-                aria-valuenow="90"
-                aria-valuemin="0"
-                aria-valuemax="100"
-              ></div>
-            </div>
-            <div class="skill-name">
-              <p>HTML</p>
-              <p>80%</p>
-            </div>
-            <div class="progress">
-              <div
-                class="progress-bar"
-                role="progressbar"
-                aria-valuenow="80"
-                aria-valuemin="0"
-                aria-valuemax="100"
-              ></div>
-            </div>
-            <div class="skill-name">
-              <p>CSS</p>
-              <p>80%</p>
-            </div>
-            <div class="progress">
-              <div
-                class="progress-bar"
-                role="progressbar"
-                aria-valuenow="80"
-                aria-valuemin="0"
-                aria-valuemax="100"
-              ></div>
-            </div>
-            <div class="skill-name">
-              <p>BOOTSTRAP</p>
-              <p>80%</p>
-            </div>
-            <div class="progress">
-              <div
-                class="progress-bar"
-                role="progressbar"
-                aria-valuenow="80"
-                aria-valuemin="0"
-                aria-valuemax="100"
-              ></div>
-            </div>
-            <div class="skill-name">
-              <p>TAILWIND</p>
-              <p>25%</p>
-            </div>
-            <div class="progress">
-              <div
-                class="progress-bar"
-                role="progressbar"
-                aria-valuenow="25"
-                aria-valuemin="0"
-                aria-valuemax="100"
-              ></div>
-            </div>
-
-            <div class="skill-name">
-              <p>PHP</p>
-              <p>15%</p>
-            </div>
-            <div class="progress">
-              <div
-                class="progress-bar"
-                role="progressbar"
-                aria-valuenow="15"
-                aria-valuemin="0"
-                aria-valuemax="100"
-              ></div>
-            </div>
-          </div>
-          <!-- <a class="btn" href="">Learn More</a> -->
-        </div>
+      <div class="hero-scroll-hint reveal d4">
+        <div class="scroll-bar"></div>
+        <span>Scroll</span>
       </div>
-    </div>
-    <!-- About End -->
-    <!-- Blog Start -->
-    <div class="blog" id="blog">
-      <div class="container">
-        <div
-          class="section-header text-center wow zoomIn"
-          data-wow-delay="0.1s"
-        >
-          <p>From Blog</p>
-          <h2>Latest Projects</h2>
-        </div>
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="blog-item wow fadeInUp" data-wow-delay="0.1s">
-              <div class="blog-img">
-                <img src="img/Screenshot 2024-04-14 083224.png" alt="Blog" />
-              </div>
-              <div class="blog-text">
-                <h2>Indomontir | Website Service Mobil</h2>
-                <div class="blog-meta">
-                  <p><i class="far fa-user"></i>Team Work</p>
-                  <p><i class="far fa-list-alt"></i>Front End</p>
-                  <p><i class="far fa-calendar-alt"></i>Nov-2023</p>
-                </div>
-                <p>
-                  Website ini menyediakan layanan yang mudah bagi User untuk
-                  dapat berinteraksi dengan montir nya secara langsung via
-                  WhatsApp.
-                </p>
-                <a class="btn" href="https://indomontir.id/"
-                  >Go to Website <i class="fa fa-angle-right"></i
-                ></a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="blog-item wow fadeInUp" data-wow-delay="0.1s">
-              <div class="blog-img">
-                <img src="img/Screenshot 2024-04-14 084004.png" alt="Blog" />
-              </div>
-              <div class="blog-text">
-                <h2>Foranggis | Child Aspiration Website</h2>
-                <div class="blog-meta">
-                  <p><i class="far fa-user"></i>Team Work</p>
-                  <p><i class="far fa-list-alt"></i>Front End</p>
-                  <p><i class="far fa-calendar-alt"></i>Dec-2023</p>
-                </div>
-                <p>
-                  Website ini menyediakan layanan supaya anak-anak se-kecamatan
-                  cimanggis dapat terpenuhi hak-hak anak yang seharusnya mereka
-                  dapatkan.
-                </p>
-                <a class="btn" href="https://foranggis.com/"
-                  >Go to Website <i class="fa fa-angle-right"></i
-                ></a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="blog-item wow fadeInUp" data-wow-delay="0.1s">
-              <div class="blog-img">
-                <img src="img/Screenshot 2024-04-14 084004.png" alt="Blog" />
-              </div>
-              <div class="blog-text">
-                <h2>Inpex Oil & Gas | MOC (Management of Change)</h2>
-                <div class="blog-meta">
-                  <p><i class="far fa-user"></i>Team Work</p>
-                  <p><i class="far fa-list-alt"></i>Apps Design</p>
-                  <p><i class="far fa-calendar-alt"></i>Dec-2023</p>
-                </div>
-                <p>
-                  Website ini menyediakan layanan supaya anak-anak se-kecamatan
-                  cimanggis dapat terpenuhi hak-hak anak yang seharusnya mereka
-                  dapatkan.
-                </p>
-                <a class="btn" href="https://foranggis.com/"
-                  >Go to Website <i class="fa fa-angle-right"></i
-                ></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Blog End -->
+    </section>
 
-    <!-- Footer Start -->
-    <div class="footer wow fadeIn" id="footer" data-wow-delay="0.3s">
-      <div class="container-fluid">
-        <div class="container">
-          <div class="footer-info">
-            <h2>Ibnu Zaky</h2>
-            <h3>Kota Depok, Jawa Barat 16453</h3>
-            <div class="footer-menu">
-              <a class="nomor-wa" href="https://wa.me/6285186660950">
-                <p>+62 851-8666-0950</p>
-              </a>
-              <p>ibnuzaky667@gmail.com</p>
-            </div>
-            <div class="footer-social">
-              <a href="https://twitter.com/markopetualang"
-                ><i class="fab fa-twitter"></i
-              ></a>
-              <a
-                href="https://www.facebook.com/share/oD7jZPfq3PjttzcB/?mibextid=qi2Omg"
-                ><i class="fab fa-facebook-f"></i
-              ></a>
-              <a href="https://www.instagram.com/ibnuzzkyy"
-                ><i class="fab fa-instagram"></i
-              ></a>
-              <a href="https://www.linkedin.com/in/ibnu-zaky/"
-                ><i class="fab fa-linkedin-in"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-        <div class="container copyright">
-          <p>
-            &copy; <a href="https://webpas.my.id/">webpass.id</a>, All Right
-            Reserved | Designed By Ibnu Zaky
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <p class="sec-label reveal">About Me</p>
+      <h2 class="sec-title reveal d1">Skills &<br />Experience</h2>
+      <div class="about-grid">
+        <div>
+          <p class="about-bio reveal">
+            Saya adalah Web Designer & Front End Developer yang berfokus pada
+            pengalaman digital yang menarik, fungsional, dan berorientasi
+            pengguna. Dengan penguasaan Figma, HTML, CSS, dan Bootstrap, saya
+            mampu membangun interface yang estetis sekaligus performa tinggi.
           </p>
+          <div class="stats-row">
+            <div class="stat reveal d1">
+              <div class="num">3+</div>
+              <div class="lbl">Projects</div>
+            </div>
+            <div class="stat reveal d2">
+              <div class="num">2+</div>
+              <div class="lbl">Yrs Exp</div>
+            </div>
+            <div class="stat reveal d3">
+              <div class="num">∞</div>
+              <div class="lbl">Passion</div>
+            </div>
+          </div>
+        </div>
+        <div class="skills">
+          <div class="reveal">
+            <div class="sk-row">
+              <span class="sk-name">Figma</span><span class="sk-val">90%</span>
+            </div>
+            <div class="sk-track"><div class="sk-fill" data-w="90"></div></div>
+          </div>
+          <div class="reveal d1">
+            <div class="sk-row">
+              <span class="sk-name">HTML</span><span class="sk-val">80%</span>
+            </div>
+            <div class="sk-track"><div class="sk-fill" data-w="80"></div></div>
+          </div>
+          <div class="reveal d2">
+            <div class="sk-row">
+              <span class="sk-name">CSS</span><span class="sk-val">80%</span>
+            </div>
+            <div class="sk-track"><div class="sk-fill" data-w="80"></div></div>
+          </div>
+          <div class="reveal d3">
+            <div class="sk-row">
+              <span class="sk-name">Bootstrap</span
+              ><span class="sk-val">80%</span>
+            </div>
+            <div class="sk-track"><div class="sk-fill" data-w="80"></div></div>
+          </div>
+          <div class="reveal d4">
+            <div class="sk-row">
+              <span class="sk-name">Tailwind CSS</span
+              ><span class="sk-val">25%</span>
+            </div>
+            <div class="sk-track"><div class="sk-fill" data-w="25"></div></div>
+          </div>
+          <div class="reveal d5">
+            <div class="sk-row">
+              <span class="sk-name">PHP</span><span class="sk-val">15%</span>
+            </div>
+            <div class="sk-track"><div class="sk-fill" data-w="15"></div></div>
+          </div>
         </div>
       </div>
-    </div>
-    <!-- Footer End -->
+    </section>
 
-    <!-- Back to top button -->
-    <a href="#" class="btn back-to-top"><i class="fa fa-chevron-up"></i></a>
+    <!-- PROJECTS -->
+    <section class="section section-alt" id="projects">
+      <p class="sec-label reveal">My Work</p>
+      <h2 class="sec-title reveal d1">Latest<br />Projects</h2>
 
-    <!-- Pre Loader -->
-    <div id="loader" class="show">
-      <div class="loader"></div>
-    </div>
+      <div class="filter-row reveal d2">
+        <button class="f-btn active" data-filter="all">All</button>
+        <button class="f-btn" data-filter="frontend">Front End</button>
+        <button class="f-btn" data-filter="design">Apps Design</button>
+        <button class="f-btn" data-filter="teamwork">Team Work</button>
+      </div>
 
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/typed/typed.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/isotope/isotope.pkgd.min.js"></script>
-    <script src="lib/lightbox/js/lightbox.min.js"></script>
+      <div class="cards" id="cards">
+        <!-- Card 1 -->
+        <div class="card reveal" data-cat="frontend teamwork">
+          <div class="card-thumb">🔧</div>
+          <div class="card-body">
+            <div class="card-tags">
+              <span class="tag">Front End</span>
+              <span class="tag">Team Work</span>
+            </div>
+            <h3 class="card-title">Indomontir — Website Service Mobil</h3>
+            <p class="card-desc">
+              Platform otomotif yang memudahkan user berinteraksi langsung
+              dengan montir via WhatsApp.
+            </p>
+            <div class="card-foot">
+              <span class="card-date">Nov 2023</span>
+              <a href="https://indomontir.id/" target="_blank" class="card-link"
+                ><i class="fa fa-arrow-up-right-from-square"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="card reveal d1" data-cat="frontend teamwork">
+          <div class="card-thumb">🌱</div>
+          <div class="card-body">
+            <div class="card-tags">
+              <span class="tag">Front End</span>
+              <span class="tag">Team Work</span>
+            </div>
+            <h3 class="card-title">Foranggis — Child Aspiration Website</h3>
+            <p class="card-desc">
+              Website aspirasi anak se-kecamatan Cimanggis untuk pemenuhan
+              hak-hak anak secara digital.
+            </p>
+            <div class="card-foot">
+              <span class="card-date">Dec 2023</span>
+              <a href="https://foranggis.com/" target="_blank" class="card-link"
+                ><i class="fa fa-arrow-up-right-from-square"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="card reveal d2" data-cat="design teamwork">
+          <div class="card-thumb">⚙️</div>
+          <div class="card-body">
+            <div class="card-tags">
+              <span class="tag">Apps Design</span>
+              <span class="tag">Team Work</span>
+            </div>
+            <h3 class="card-title">Inpex Oil & Gas — MOC System</h3>
+            <p class="card-desc">
+              Desain aplikasi Management of Change untuk perusahaan minyak dan
+              gas internasional Inpex.
+            </p>
+            <div class="card-foot">
+              <span class="card-date">Dec 2023</span>
+              <a href="#" class="card-link"
+                ><i class="fa fa-arrow-up-right-from-square"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <!-- Contact Javascript File -->
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <p class="sec-label reveal">Get In Touch</p>
+      <h2 class="sec-title reveal d1">Let's Work<br />Together</h2>
+      <div class="contact-inner">
+        <a href="mailto:ibnuzaky667@gmail.com" class="contact-email reveal d2"
+          >ibnuzaky667@gmail.com</a
+        >
+        <div class="socials reveal d3">
+          <a
+            href="https://wa.me/6285186660950"
+            target="_blank"
+            class="social-link"
+          >
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+          <a
+            href="https://www.instagram.com/ibnuzzkyy"
+            target="_blank"
+            class="social-link"
+          >
+            <i class="fab fa-instagram"></i> Instagram
+          </a>
+          <a
+            href="https://www.linkedin.com/in/ibnu-zaky/"
+            target="_blank"
+            class="social-link"
+          >
+            <i class="fab fa-linkedin-in"></i> LinkedIn
+          </a>
+          <a
+            href="https://twitter.com/markopetualang"
+            target="_blank"
+            class="social-link"
+          >
+            <i class="fab fa-twitter"></i> Twitter
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <span class="footer-logo">Ibnu<em>.</em></span>
+      <p>© 2024 Ibnu Zaky. Kota Depok, Jawa Barat.</p>
+      <p>Designed & built with ❤️</p>
+    </footer>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
