@@ -148,23 +148,21 @@ if (contactForm) {
     feedback.textContent = "";
     feedback.className = "form-feedback";
 
-    const formData = new FormData(contactForm);
-    const data = Object.fromEntries(formData.entries());
+    const formData = new URLSearchParams(new FormData(contactForm));
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch("/", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: formData.toString(),
       });
       
-      const result = await response.json();
-      if (response.ok && result.success) {
-        feedback.textContent = result.message || "Pesan berhasil dikirim!";
+      if (response.ok) {
+        feedback.textContent = "Pesan berhasil dikirim! Terima kasih.";
         feedback.classList.add("success");
         contactForm.reset();
       } else {
-        throw new Error(result.message || "Gagal mengirim pesan.");
+        throw new Error("Gagal mengirim pesan.");
       }
     } catch (err) {
       feedback.textContent = err.message || "Terjadi kesalahan koneksi.";

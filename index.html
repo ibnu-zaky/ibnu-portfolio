@@ -163,7 +163,8 @@
       <p class="sec-lbl r">Hubungi Saya</p>
       <h2 class="sec-ttl r d1">Let's Work<br />Together</h2>
       <div class="contact-wrap">
-        <form id="contactForm" class="contact-form r d2">
+        <form id="contactForm" name="contact" class="contact-form r d2" data-netlify="true">
+          <input type="hidden" name="form-name" value="contact" />
           <input type="text" id="name" name="name" placeholder="Nama Anda" required />
           <input type="email" id="email" name="email" placeholder="Email Anda" required />
           <textarea id="message" name="message" placeholder="Tulis pesan Anda..." required rows="4"></textarea>
