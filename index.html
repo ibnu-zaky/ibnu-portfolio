@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ibnu Zaky — Portfolio</title>
+    <meta name="description" content="Portfolio of Ibnu Zaky, Web Designer & Front End Developer from Depok, Indonesia. Building clean, functional, and beautiful web experiences." />
+    <meta property="og:title" content="Ibnu Zaky — Portfolio" />
+    <meta property="og:description" content="Portfolio of Ibnu Zaky, Web Designer & Front End Developer from Depok, Indonesia." />
+    <meta property="og:type" content="website" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
@@ -143,7 +147,7 @@
       <div class="cards">
         <div class="card r" data-cat="frontend teamwork">
           <div class="card-thumb">
-            <img src="img/indomontir.png" alt="Indomontir" />
+            <img src="img/indomontir.png" alt="Indomontir" loading="lazy" />
           </div>
           <div class="card-body">
             <div class="card-tags">
@@ -166,7 +170,7 @@
 
         <div class="card r d1" data-cat="frontend teamwork">
           <div class="card-thumb">
-            <img src="img/foranggis.png" alt="Foranggis" />
+            <img src="img/foranggis.png" alt="Foranggis" loading="lazy" />
           </div>
           <div class="card-body">
             <div class="card-tags">
@@ -223,9 +227,13 @@
       <p class="sec-lbl r">Hubungi Saya</p>
       <h2 class="sec-ttl r d1">Let's Work<br />Together</h2>
       <div class="contact-wrap">
-        <a href="mailto:ibnuzaky667@gmail.com" class="contact-email r d2"
-          >ibnuzaky667@gmail.com</a
-        >
+        <form id="contactForm" class="contact-form r d2">
+          <input type="text" id="name" name="name" placeholder="Nama Anda" required />
+          <input type="email" id="email" name="email" placeholder="Email Anda" required />
+          <textarea id="message" name="message" placeholder="Tulis pesan Anda..." required rows="4"></textarea>
+          <button type="submit" class="submit-btn" id="submitBtn">Kirim Pesan ↗</button>
+          <p id="formFeedback" class="form-feedback"></p>
+        </form>
         <div class="socials r d3">
           <a href="https://wa.me/6285186660950" target="_blank" class="soc"
             ><i class="fab fa-whatsapp"></i> WhatsApp</a

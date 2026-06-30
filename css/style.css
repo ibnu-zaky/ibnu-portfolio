@@ -544,19 +544,63 @@ nav {
 .contact-wrap {
   max-width: 600px;
 }
-.contact-email {
-  font-family: "Syne", sans-serif;
-  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
-  font-weight: 800;
-  letter-spacing: -1px;
-  color: var(--accent);
-  display: block;
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   margin-bottom: 40px;
-  word-break: break-all;
-  transition: opacity 0.2s;
 }
-.contact-email:hover {
-  opacity: 0.6;
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 16px 20px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: border-color 0.2s, background 0.2s;
+  outline: none;
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--accent);
+  background: var(--bg3);
+}
+.contact-form textarea {
+  resize: vertical;
+}
+.submit-btn {
+  align-self: flex-start;
+  padding: 14px 32px;
+  background: var(--accent);
+  color: #111;
+  border: none;
+  border-radius: 100px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.submit-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+.submit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+.form-feedback {
+  font-size: 0.85rem;
+  margin-top: 8px;
+}
+.form-feedback.success {
+  color: var(--accent);
+}
+.form-feedback.error {
+  color: #ff5555;
 }
 .socials {
   display: flex;

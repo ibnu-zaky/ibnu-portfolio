@@ -78,3 +78,43 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
     }
   });
 });
+
+const contactForm = document.getElementById("contactForm");
+if (contactForm) {
+  contactForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById("submitBtn");
+    const feedback = document.getElementById("formFeedback");
+    
+    btn.disabled = true;
+    btn.textContent = "Mengirim...";
+    feedback.textContent = "";
+    feedback.className = "form-feedback";
+
+    const formData = new FormData(contactForm);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      
+      const result = await response.json();
+      if (response.ok && result.success) {
+        feedback.textContent = result.message || "Pesan berhasil dikirim!";
+        feedback.classList.add("success");
+        contactForm.reset();
+      } else {
+        throw new Error(result.message || "Gagal mengirim pesan.");
+      }
+    } catch (err) {
+      feedback.textContent = err.message || "Terjadi kesalahan koneksi.";
+      feedback.classList.add("error");
+    } finally {
+      btn.disabled = false;
+      btn.textContent = "Kirim Pesan ↗";
+    }
+  });
+}
