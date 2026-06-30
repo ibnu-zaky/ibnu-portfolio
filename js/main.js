@@ -58,21 +58,74 @@ window.addEventListener("load", () => {
       setTimeout(() => el.classList.add("in"), 150 + i * 140),
     );
 });
-document.querySelectorAll(".f-btn").forEach((btn) => {
-  btn.addEventListener("click", () => {
-    document
-      .querySelectorAll(".f-btn")
-      .forEach((b) => b.classList.remove("active"));
-    btn.classList.add("active");
-    const f = btn.dataset.filter;
-    document.querySelectorAll(".card").forEach((c) => {
-      c.classList.toggle(
-        "hidden",
-        f !== "all" && !c.dataset.cat.split(" ").includes(f),
-      );
+// ── Dynamic Project Loader ────────────────────────────────────────
+const categoryLabels = {
+  frontend: "Front End",
+  design: "Apps Design",
+  teamwork: "Team Work",
+};
+
+function renderCard(project, index) {
+  const cats = project.categories.join(" ");
+  const delay = index > 0 ? ` d${index}` : "";
+  const tags = project.categories
+    .map((c) => `<span class="tag">${categoryLabels[c] || c}</span>`)
+    .join("");
+
+  let thumbHTML;
+  if (project.image) {
+    thumbHTML = `<div class="card-thumb"><img src="${project.image}" alt="${project.title}" loading="lazy" /></div>`;
+  } else if (project.placeholder) {
+    thumbHTML = `<div class="card-thumb" style="background:linear-gradient(135deg,#0a0a1a,#12122a)"><div class="card-ph"><span class="ph-t">${project.placeholder.title}</span><span class="ph-s">${project.placeholder.subtitle}</span></div></div>`;
+  } else {
+    thumbHTML = `<div class="card-thumb"></div>`;
+  }
+
+  const linkHTML = project.link
+    ? `<a href="${project.link}" target="_blank" class="card-link"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>`
+    : `<span class="card-link" style="opacity:.3"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>`;
+
+  return `<div class="card r${delay}" data-cat="${cats}">${thumbHTML}<div class="card-body"><div class="card-tags">${tags}</div><h3 class="card-title">${project.title}</h3><p class="card-desc">${project.description}</p><div class="card-foot"><span class="card-date">${project.date}</span>${linkHTML}</div></div></div>`;
+}
+
+function bindFilters() {
+  document.querySelectorAll(".f-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      document
+        .querySelectorAll(".f-btn")
+        .forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      const f = btn.dataset.filter;
+      document.querySelectorAll(".card").forEach((c) => {
+        c.classList.toggle(
+          "hidden",
+          f !== "all" && !c.dataset.cat.split(" ").includes(f),
+        );
+      });
     });
   });
-});
+}
+
+async function loadProjects() {
+  const container = document.getElementById("projectCards");
+  if (!container) return;
+
+  try {
+    const res = await fetch("/api/portfolio");
+    const projects = await res.json();
+    container.innerHTML = projects.map(renderCard).join("");
+  } catch {
+    // Fallback: if API is not available, show a message
+    container.innerHTML = `<p style="color:var(--muted);font-size:.9rem;">Memuat project...</p>`;
+  }
+
+  // Re-observe new cards for reveal animation
+  container.querySelectorAll(".r").forEach((el) => obs.observe(el));
+  bindFilters();
+}
+
+loadProjects();
+
 document.querySelectorAll('a[href^="#"]').forEach((a) => {
   a.addEventListener("click", (e) => {
     const t = document.querySelector(a.getAttribute("href"));

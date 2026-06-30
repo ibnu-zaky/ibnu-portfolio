@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="id" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog — Ibnu Zaky</title>
+    <meta name="description" content="Blog oleh Ibnu Zaky — Tips, insight, dan cerita tentang web development, desain UI/UX, dan karir di dunia teknologi." />
+    <meta property="og:title" content="Blog — Ibnu Zaky" />
+    <meta property="og:description" content="Tips, insight, dan cerita tentang web development dan desain UI/UX." />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="favicon.ico" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <nav>
+      <a href="index.html" class="logo">Ibnu<em>.</em></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="blog.html" class="active-link">Blog</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <a href="https://wa.me/6285186660950" target="_blank" class="hire-btn">Hire Me ↗</a>
+        <button class="theme-btn" id="themeBtn">🌙</button>
+        <div class="ham" id="ham"><span></span><span></span><span></span></div>
+      </div>
+    </nav>
+
+    <section class="section blog-section" style="padding-top: 120px;">
+      <p class="sec-lbl r">Blog</p>
+      <h1 class="sec-ttl r d1">Artikel &<br />Insight</h1>
+
+      <!-- Post List -->
+      <div id="postList" class="post-list r d2">
+        <p style="color:var(--muted)">Memuat artikel...</p>
+      </div>
+
+      <!-- Single Post View (hidden by default) -->
+      <div id="postDetail" class="post-detail" style="display:none;">
+        <button id="backBtn" class="back-btn r">← Kembali ke daftar</button>
+        <article class="post-article r d1">
+          <div class="post-meta">
+            <span id="postDate" class="post-date"></span>
+            <div id="postTags" class="post-tags"></div>
+          </div>
+          <h1 id="postTitle" class="post-title"></h1>
+          <div id="postContent" class="post-content"></div>
+        </article>
+      </div>
+    </section>
+
+    <footer>
+      <span class="f-logo">Ibnu<em>.</em></span>
+      <p>© 2024 Ibnu Zaky · Kota Depok, Jawa Barat</p>
+      <p>Designed &amp; built with ❤️</p>
+    </footer>
+
+    <script>
+      // Theme toggle (same logic as main page)
+      const themeBtn = document.getElementById("themeBtn");
+      const storedTheme = localStorage.getItem("theme");
+      let dark = storedTheme ? storedTheme === "dark" : true;
+      document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+      themeBtn.textContent = dark ? "🌙" : "☀️";
+      themeBtn.addEventListener("click", () => {
+        dark = !dark;
+        document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+        themeBtn.textContent = dark ? "🌙" : "☀️";
+        localStorage.setItem("theme", dark ? "dark" : "light");
+      });
+
+      // Hamburger
+      document.getElementById("ham").addEventListener("click", () =>
+        document.getElementById("navLinks").classList.toggle("open")
+      );
+
+      // Reveal animation
+      const obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (!e.isIntersecting) return;
+            e.target.classList.add("in");
+            obs.unobserve(e.target);
+          });
+        },
+        { threshold: 0.1 }
+      );
+      document.querySelectorAll(".r").forEach((el) => obs.observe(el));
+
+      // Elements
+      const postList = document.getElementById("postList");
+      const postDetail = document.getElementById("postDetail");
+      const backBtn = document.getElementById("backBtn");
+
+      // Format date
+      function formatDate(dateStr) {
+        const d = new Date(dateStr);
+        return d.toLocaleDateString("id-ID", { year: "numeric", month: "long", day: "numeric" });
+      }
+
+      // Render post list
+      function renderPostList(posts) {
+        if (!posts.length) {
+          postList.innerHTML = `<p style="color:var(--muted)">Belum ada artikel.</p>`;
+          return;
+        }
+        postList.innerHTML = posts
+          .map(
+            (p) => `
+          <div class="post-card" data-slug="${p.slug}">
+            <div class="post-card-meta">
+              <span class="post-card-date">${formatDate(p.date)}</span>
+              <div class="post-card-tags">${p.tags.map((t) => `<span class="tag">${t}</span>`).join("")}</div>
+            </div>
+            <h2 class="post-card-title">${p.title}</h2>
+            <p class="post-card-excerpt">${p.excerpt}</p>
+            <span class="post-card-read">Baca selengkapnya →</span>
+          </div>`
+          )
+          .join("");
+
+        // Click handlers
+        postList.querySelectorAll(".post-card").forEach((card) => {
+          card.addEventListener("click", () => openPost(card.dataset.slug));
+        });
+      }
+
+      // Open single post
+      async function openPost(slug) {
+        postList.style.display = "none";
+        postDetail.style.display = "block";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+
+        try {
+          const res = await fetch(`/api/posts/${slug}`);
+          const post = await res.json();
+
+          document.getElementById("postTitle").textContent = post.title;
+          document.getElementById("postDate").textContent = formatDate(post.date);
+          document.getElementById("postTags").innerHTML = post.tags
+            .map((t) => `<span class="tag">${t}</span>`)
+            .join("");
+          // Convert newlines to paragraphs
+          document.getElementById("postContent").innerHTML = post.content
+            .split("\n\n")
+            .map((p) => `<p>${p.replace(/\n/g, "<br>")}</p>`)
+            .join("");
+
+          // Re-observe for animation
+          postDetail.querySelectorAll(".r").forEach((el) => {
+            el.classList.remove("in");
+            obs.observe(el);
+          });
+        } catch {
+          document.getElementById("postContent").innerHTML = `<p style="color:#ff5555">Gagal memuat artikel.</p>`;
+        }
+      }
+
+      // Back button
+      backBtn.addEventListener("click", () => {
+        postDetail.style.display = "none";
+        postList.style.display = "block";
+      });
+
+      // Load posts
+      async function loadPosts() {
+        try {
+          const res = await fetch("/api/posts");
+          const posts = await res.json();
+          renderPostList(posts);
+        } catch {
+          postList.innerHTML = `<p style="color:var(--muted)">Gagal memuat daftar artikel.</p>`;
+        }
+      }
+
+      loadPosts();
+
+      // Pageview tracking
+      try {
+        navigator.sendBeacon(
+          "/api/pageview",
+          JSON.stringify({
+            path: window.location.pathname,
+            referrer: document.referrer || "direct",
+            timestamp: new Date().toISOString(),
+          })
+        );
+      } catch (_) {}
+    </script>
+  </body>
+</html>
