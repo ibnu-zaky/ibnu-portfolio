@@ -1,5 +1,3 @@
-import { Elysia } from "elysia";
-
 // ── Inline Data (JSON-based CMS) ──────────────────────────────────
 const projects = [
   {
@@ -68,76 +66,92 @@ const posts = [
   },
 ];
 
-// ── Elysia App ────────────────────────────────────────────────────
-const app = new Elysia({ aot: false })
-  // CORS
-  .onBeforeHandle(({ request, set }) => {
-    const origin = request.headers.get("origin") || "";
-    set.headers["Access-Control-Allow-Origin"] = origin || "*";
-    set.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS";
-    set.headers["Access-Control-Allow-Headers"] = "Content-Type";
+// ── Helper: JSON Response ─────────────────────────────────────────
+function json(data, status = 200) {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type",
+    },
+  });
+}
 
-    if (request.method === "OPTIONS") {
-      set.status = 204;
-      return "";
-    }
-  })
+// ── Router ────────────────────────────────────────────────────────
+export default async (request) => {
+  const url = new URL(request.url);
+  const path = url.pathname;
+  const method = request.method;
 
-  // Health check
-  .get("/api", () => ({
-    status: "OK",
-    message: "ElysiaJS API running on Netlify Edge!",
-  }))
+  // Handle CORS preflight
+  if (method === "OPTIONS") {
+    return new Response(null, {
+      status: 204,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type",
+      },
+    });
+  }
 
-  // Portfolio — returns all projects
-  .get("/api/portfolio", () => projects)
+  // GET /api — Health check
+  if (path === "/api" && method === "GET") {
+    return json({ status: "OK", message: "API running on Netlify Edge!" });
+  }
 
-  // Blog — returns all posts (without full content)
-  .get("/api/posts", () =>
-    posts.map(({ content, ...rest }) => rest)
-  )
+  // GET /api/portfolio — All projects
+  if (path === "/api/portfolio" && method === "GET") {
+    return json(projects);
+  }
 
-  // Blog — returns a single post by slug
-  .get("/api/posts/:slug", ({ params: { slug } }) => {
+  // GET /api/posts — All posts (without full content)
+  if (path === "/api/posts" && method === "GET") {
+    const list = posts.map(({ content, ...rest }) => rest);
+    return json(list);
+  }
+
+  // GET /api/posts/:slug — Single post by slug
+  const slugMatch = path.match(/^\/api\/posts\/(.+)$/);
+  if (slugMatch && method === "GET") {
+    const slug = slugMatch[1];
     const post = posts.find((p) => p.slug === slug);
-    if (!post) return { error: "Post not found" };
-    return post;
-  })
+    if (!post) return json({ error: "Post not found" }, 404);
+    return json(post);
+  }
 
-  // Contact form handler
-  .post("/api/contact", async ({ request }) => {
+  // POST /api/contact — Contact form
+  if (path === "/api/contact" && method === "POST") {
     try {
       const body = await request.json();
       const { name, email, message } = body;
 
       if (!name || !email || !message) {
-        return { success: false, message: "Semua field wajib diisi." };
+        return json({ success: false, message: "Semua field wajib diisi." }, 400);
       }
 
       console.log(`[Contact] ${name} <${email}>: ${message}`);
-      return {
-        success: true,
-        message: "Pesan berhasil diterima! Terima kasih.",
-      };
+      return json({ success: true, message: "Pesan berhasil diterima! Terima kasih." });
     } catch {
-      return { success: false, message: "Format data tidak valid." };
+      return json({ success: false, message: "Format data tidak valid." }, 400);
     }
-  })
+  }
 
-  // Pageview analytics
-  .post("/api/pageview", async ({ request }) => {
+  // POST /api/pageview — Pageview tracking
+  if (path === "/api/pageview" && method === "POST") {
     try {
       const body = await request.json();
-      const { path, referrer, timestamp } = body;
-      console.log(`[Pageview] ${path} | ref: ${referrer} | at: ${timestamp}`);
-      return { tracked: true };
+      console.log(`[Pageview] ${body.path} | ref: ${body.referrer} | at: ${body.timestamp}`);
+      return json({ tracked: true });
     } catch {
-      return { tracked: false };
+      return json({ tracked: false }, 400);
     }
-  });
+  }
 
-export default async (request: Request) => {
-  return app.handle(request);
+  // 404 fallback
+  return json({ error: "Not found" }, 404);
 };
 
 export const config = { path: "/api/*" };
