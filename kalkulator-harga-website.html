@@ -1,0 +1,699 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalkulator Harga Website | Ibnu Zaky</title>
+    <meta
+      name="description"
+      content="Pilih jenis website dan fitur yang kamu butuhkan, dapatkan estimasi harga langsung, dan kirim rincian pesanan ke WhatsApp."
+    />
+    <meta name="theme-color" content="#0a0f1e" />
+    <link rel="icon" href="/img/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #0b0d14;
+        --surface: #141824;
+        --card: rgba(255, 255, 255, 0.05);
+        --card-hover: rgba(255, 255, 255, 0.08);
+        --border: rgba(255, 255, 255, 0.1);
+        --accent: #c8f135;
+        --accent2: #8ad1ff;
+        --warn: #ffb703;
+        --premium: #b28dff;
+        --text: #f5f1ea;
+        --muted: #a8a8b5;
+        --danger: #ff6b6b;
+        --radius: 18px;
+        --shadow: 0 18px 50px rgba(0, 0, 0, 0.36);
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      body::before,
+      body::after {
+        content: "";
+        position: fixed;
+        border-radius: 50%;
+        filter: blur(120px);
+        pointer-events: none;
+        z-index: 0;
+      }
+      body::before {
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, rgba(200, 241, 53, 0.1), transparent 70%);
+        top: -200px;
+        left: -200px;
+      }
+      body::after {
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(circle, rgba(168, 85, 247, 0.1), transparent 70%);
+        bottom: -150px;
+        right: -150px;
+      }
+
+      .page-nav {
+        position: sticky;
+        top: 0;
+        z-index: 5;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 18px 20px 12px;
+        background: linear-gradient(180deg, var(--bg) 60%, transparent);
+      }
+      .brand {
+        font-family: "Syne", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        color: var(--text);
+        text-decoration: none;
+      }
+      .brand span:last-child {
+        color: var(--accent);
+      }
+      .page-nav a:last-child {
+        color: var(--muted);
+        font-size: 0.9rem;
+        text-decoration: none;
+      }
+      .page-nav a:last-child:hover {
+        color: var(--text);
+      }
+
+      .container {
+        position: relative;
+        z-index: 1;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 8px 20px 140px;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 48px;
+        animation: fadeDown 0.7s ease both;
+      }
+      @keyframes fadeDown {
+        from { opacity: 0; transform: translateY(-12px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(200, 241, 53, 0.1);
+        border: 1px solid rgba(200, 241, 53, 0.25);
+        color: var(--accent);
+        border-radius: 100px;
+        padding: 6px 14px;
+        font-size: 0.78rem;
+        font-weight: 500;
+        margin-bottom: 20px;
+      }
+      .badge::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 8px var(--accent);
+        animation: pulse 2s ease-in-out infinite;
+      }
+      @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.4; }
+      }
+      h1 {
+        font-family: "Syne", sans-serif;
+        font-size: clamp(2rem, 5vw, 2.8rem);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        line-height: 1.15;
+        margin-bottom: 14px;
+      }
+      header p {
+        color: var(--muted);
+        font-size: 1rem;
+        max-width: 520px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      .step-label {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: "Syne", sans-serif;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin: 40px 0 16px;
+      }
+      .step-label .num {
+        color: var(--accent);
+      }
+      .step-label::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--border);
+      }
+
+      .base-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 12px;
+      }
+      .base-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 20px;
+        cursor: pointer;
+        transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
+        position: relative;
+      }
+      .base-card:hover {
+        background: var(--card-hover);
+        transform: translateY(-2px);
+      }
+      .base-card.active {
+        border-color: var(--accent);
+        background: rgba(200, 241, 53, 0.08);
+      }
+      .base-card.active::after {
+        content: "✓";
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        width: 22px;
+        height: 22px;
+        background: var(--accent);
+        color: #0b0d14;
+        border-radius: 50%;
+        font-size: 12px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .base-name {
+        font-family: "Syne", sans-serif;
+        font-weight: 700;
+        font-size: 1rem;
+        margin-bottom: 5px;
+      }
+      .base-desc {
+        font-size: 0.82rem;
+        color: var(--muted);
+        line-height: 1.5;
+        margin-bottom: 12px;
+      }
+      .base-price {
+        font-size: 0.85rem;
+        color: var(--accent2);
+        font-weight: 500;
+      }
+
+      .feature-group {
+        margin-bottom: 24px;
+      }
+      .feature-group-title {
+        font-family: "Syne", sans-serif;
+        font-size: 0.88rem;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 10px;
+        padding-left: 2px;
+      }
+      .feature-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .feature-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 14px 18px;
+        cursor: pointer;
+        transition: border-color 0.15s ease, background 0.15s ease;
+        gap: 12px;
+      }
+      .feature-row:hover {
+        background: var(--card-hover);
+      }
+      .feature-row.active {
+        border-color: var(--accent);
+        background: rgba(200, 241, 53, 0.06);
+      }
+      .feature-left {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        min-width: 0;
+      }
+      .checkbox {
+        width: 20px;
+        height: 20px;
+        border-radius: 6px;
+        border: 1.5px solid rgba(255, 255, 255, 0.25);
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.15s ease;
+      }
+      .feature-row.active .checkbox {
+        background: var(--accent);
+        border-color: var(--accent);
+      }
+      .checkbox svg {
+        width: 12px;
+        height: 12px;
+        opacity: 0;
+        transition: opacity 0.1s ease;
+      }
+      .feature-row.active .checkbox svg {
+        opacity: 1;
+      }
+      .feature-info {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        min-width: 0;
+      }
+      .feature-name {
+        font-size: 0.92rem;
+        font-weight: 500;
+      }
+      .feature-desc {
+        font-size: 0.78rem;
+        color: var(--muted);
+      }
+      .feature-price {
+        font-size: 0.85rem;
+        color: var(--muted);
+        white-space: nowrap;
+        font-weight: 500;
+      }
+      .feature-row.active .feature-price {
+        color: var(--accent);
+      }
+
+      .summary {
+        position: sticky;
+        bottom: 16px;
+        margin-top: 40px;
+        background: rgba(20, 24, 36, 0.9);
+        backdrop-filter: blur(14px);
+        border: 1px solid rgba(200, 241, 53, 0.3);
+        border-radius: var(--radius);
+        padding: 22px 24px;
+        box-shadow: var(--shadow);
+        z-index: 4;
+      }
+      .summary-top {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .summary-label {
+        font-family: "Syne", sans-serif;
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 6px;
+      }
+      .summary-total {
+        font-family: "Syne", sans-serif;
+        font-size: clamp(1.8rem, 5vw, 2.4rem);
+        font-weight: 800;
+        color: var(--text);
+        letter-spacing: -0.02em;
+        font-variant-numeric: tabular-nums;
+      }
+      .summary-meta {
+        font-size: 0.82rem;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+      .cta-btn {
+        background: var(--accent);
+        color: #0b0d14;
+        border: none;
+        border-radius: 12px;
+        padding: 15px 26px;
+        font-size: 0.95rem;
+        font-weight: 700;
+        font-family: "DM Sans", sans-serif;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        transition: transform 0.1s ease, box-shadow 0.15s ease;
+        white-space: nowrap;
+      }
+      .cta-btn:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(200, 241, 53, 0.3);
+      }
+      .cta-btn:disabled {
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--muted);
+        cursor: not-allowed;
+        transform: none;
+      }
+      .cta-btn svg {
+        width: 17px;
+        height: 17px;
+      }
+
+      .empty-hint {
+        font-size: 0.78rem;
+        color: var(--muted);
+        margin-top: 12px;
+        padding-top: 12px;
+        border-top: 1px solid var(--border);
+        display: none;
+      }
+      .empty-hint.show {
+        display: block;
+      }
+
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.8rem;
+        margin-top: 60px;
+        position: relative;
+        z-index: 1;
+      }
+      footer a {
+        color: var(--accent2);
+        text-decoration: none;
+      }
+
+      @media (max-width: 600px) {
+        .summary-top {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .cta-btn {
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="page-nav">
+      <a class="brand" href="/index.html">Ibnu<span>.</span></a>
+      <a href="/index.html">← Kembali ke portfolio</a>
+    </nav>
+
+    <div class="container">
+      <header>
+        <div class="badge">Kalkulator Harga · Live</div>
+        <h1>Hitung estimasi harga website-mu</h1>
+        <p>Pilih jenis website dan fitur yang kamu butuhkan. Harga otomatis terhitung — tinggal kirim rincian langsung ke saya lewat WhatsApp.</p>
+      </header>
+
+      <div class="step-label"><span class="num">01</span> Pilih jenis website</div>
+      <div class="base-grid" id="baseGrid"></div>
+
+      <div id="featureSection"></div>
+
+      <div class="summary">
+        <div class="summary-top">
+          <div>
+            <div class="summary-label">Estimasi Total</div>
+            <div class="summary-total" id="totalPrice">Rp 0</div>
+            <div class="summary-meta" id="metaInfo">Pilih jenis website untuk mulai</div>
+          </div>
+          <button class="cta-btn" id="ctaBtn" disabled>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2c-5.523 0-10 4.477-10 10 0 1.765.46 3.492 1.334 5.01L2 22l5.164-1.354a9.958 9.958 0 004.84 1.234h.005c5.523 0 10-4.477 10-10s-4.477-10-10-10zm0 18.253a8.24 8.24 0 01-4.198-1.148l-.301-.179-3.116.817.832-3.037-.196-.313A8.24 8.24 0 013.75 12c0-4.549 3.702-8.25 8.254-8.25 4.55 0 8.25 3.701 8.25 8.25 0 4.551-3.7 8.253-8.25 8.253z"/></svg>
+            Kirim ke WhatsApp
+          </button>
+        </div>
+        <div class="empty-hint" id="emptyHint">Pilih minimal satu jenis website dulu untuk lanjut.</div>
+      </div>
+
+      <footer>
+        Dibuat oleh <a href="/index.html">Ibnu Zaky</a> · Estimasi dapat berubah setelah diskusi kebutuhan detail.
+      </footer>
+    </div>
+
+    <script>
+      const WA_NUMBER = "6285186660950";
+
+      const basePackages = [
+        { id: "landing", name: "Landing Page", price: 800000, desc: "1 halaman, fokus konversi" },
+        { id: "profile", name: "Company Profile", price: 1800000, desc: "5–6 halaman, untuk bisnis" },
+        { id: "ecommerce", name: "Toko Online", price: 3500000, desc: "Katalog produk & checkout" },
+        { id: "custom", name: "Custom / Aplikasi Web", price: 5500000, desc: "Sistem sesuai kebutuhan" },
+      ];
+
+      const featureGroups = [
+        {
+          title: "Desain & Konten",
+          items: [
+            { id: "copywriting", name: "Copywriting profesional", desc: "Teks konten ditulis ulang oleh saya", price: 300000 },
+            { id: "premium-img", name: "Premium images / ilustrasi", desc: "Stok foto & ilustrasi berbayar", price: 250000 },
+            { id: "logo", name: "Desain logo", desc: "Logo dari nol jika belum punya", price: 400000 },
+            { id: "darkmode", name: "Dark / light mode toggle", desc: "Tampilan bisa ganti tema", price: 200000 },
+          ],
+        },
+        {
+          title: "Fungsi & Interaksi",
+          items: [
+            { id: "contact-form", name: "Contact form", desc: "Formulir kontak terkirim ke email", price: 150000 },
+            { id: "blog", name: "Sistem blog", desc: "Halaman artikel yang bisa diupdate", price: 600000 },
+            { id: "multilang", name: "Multi-bahasa", desc: "Konten dalam 2+ bahasa", price: 500000 },
+            { id: "booking", name: "Sistem booking / reservasi", desc: "Jadwal & pemesanan online", price: 900000 },
+            { id: "admin-panel", name: "Admin panel / CMS", desc: "Kelola konten sendiri tanpa coding", price: 1200000 },
+          ],
+        },
+        {
+          title: "Toko & Pembayaran",
+          items: [
+            { id: "payment", name: "Payment gateway", desc: "Midtrans / Xendit, dll", price: 700000 },
+            { id: "shipping", name: "Cek ongkir otomatis", desc: "JNE, JNT, dan kurir lain", price: 400000 },
+            { id: "coupon", name: "Sistem kupon / diskon", desc: "Kode promo untuk pelanggan", price: 300000 },
+            { id: "member", name: "Member area", desc: "Login, keranjang, wishlist", price: 800000 },
+          ],
+        },
+        {
+          title: "Teknis & Perawatan",
+          items: [
+            { id: "domain", name: "Domain & SSL 1 tahun", desc: "Nama domain .com/.id + HTTPS", price: 250000 },
+            { id: "hosting", name: "Hosting 1 tahun", desc: "Termasuk maintenance & backup", price: 400000 },
+            { id: "seo", name: "Optimasi SEO dasar", desc: "Meta tag, sitemap, kecepatan", price: 350000 },
+            { id: "analytics", name: "Google Analytics setup", desc: "Pantau statistik pengunjung", price: 150000 },
+            { id: "fast-delivery", name: "Pengerjaan express", desc: "Dipercepat dari estimasi normal", price: 500000 },
+          ],
+        },
+      ];
+
+      let selectedBase = null;
+      let selectedFeatures = new Set();
+
+      function formatRupiah(n) {
+        return "Rp " + n.toLocaleString("id-ID");
+      }
+
+      function renderBase() {
+        const grid = document.getElementById("baseGrid");
+        grid.innerHTML = basePackages
+          .map(
+            (pkg) => `
+          <div class="base-card ${selectedBase === pkg.id ? "active" : ""}" data-id="${pkg.id}">
+            <div class="base-name">${pkg.name}</div>
+            <div class="base-desc">${pkg.desc}</div>
+            <div class="base-price">mulai ${formatRupiah(pkg.price)}</div>
+          </div>
+        `
+          )
+          .join("");
+
+        grid.querySelectorAll(".base-card").forEach((card) => {
+          card.addEventListener("click", () => {
+            selectedBase = card.dataset.id;
+            renderBase();
+            renderFeatures();
+            updateSummary();
+          });
+        });
+      }
+
+      function renderFeatures() {
+        const section = document.getElementById("featureSection");
+        if (!selectedBase) {
+          section.innerHTML = "";
+          return;
+        }
+
+        section.innerHTML = `
+          <div class="step-label"><span class="num">02</span> Tambahkan fitur (opsional)</div>
+          ${featureGroups
+            .map(
+              (group) => `
+            <div class="feature-group">
+              <div class="feature-group-title">${group.title}</div>
+              <div class="feature-list">
+                ${group.items
+                  .map(
+                    (f) => `
+                  <div class="feature-row ${selectedFeatures.has(f.id) ? "active" : ""}" data-id="${f.id}">
+                    <div class="feature-left">
+                      <div class="checkbox">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#0b0d14" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      </div>
+                      <div class="feature-info">
+                        <div class="feature-name">${f.name}</div>
+                        <div class="feature-desc">${f.desc}</div>
+                      </div>
+                    </div>
+                    <div class="feature-price">+${formatRupiah(f.price)}</div>
+                  </div>
+                `
+                  )
+                  .join("")}
+              </div>
+            </div>
+          `
+            )
+            .join("")} 
+        `;
+
+        section.querySelectorAll(".feature-row").forEach((row) => {
+          row.addEventListener("click", () => {
+            const id = row.dataset.id;
+            if (selectedFeatures.has(id)) selectedFeatures.delete(id);
+            else selectedFeatures.add(id);
+            renderFeatures();
+            updateSummary();
+          });
+        });
+      }
+
+      function getFeatureData(id) {
+        for (const g of featureGroups) {
+          const f = g.items.find((x) => x.id === id);
+          if (f) return f;
+        }
+        return null;
+      }
+
+      function animateNumber(el, from, to, duration = 400) {
+        const start = performance.now();
+        function tick(now) {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const current = Math.round(from + (to - from) * eased);
+          el.textContent = formatRupiah(current);
+          if (progress < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      }
+
+      let lastTotal = 0;
+
+      function updateSummary() {
+        const totalEl = document.getElementById("totalPrice");
+        const metaEl = document.getElementById("metaInfo");
+        const ctaBtn = document.getElementById("ctaBtn");
+        const emptyHint = document.getElementById("emptyHint");
+
+        if (!selectedBase) {
+          animateNumber(totalEl, lastTotal, 0);
+          lastTotal = 0;
+          metaEl.textContent = "Pilih jenis website untuk mulai";
+          ctaBtn.disabled = true;
+          emptyHint.classList.add("show");
+          return;
+        }
+
+        emptyHint.classList.remove("show");
+        const base = basePackages.find((p) => p.id === selectedBase);
+        let total = base.price;
+        let featureCount = selectedFeatures.size;
+
+        selectedFeatures.forEach((id) => {
+          const f = getFeatureData(id);
+          if (f) total += f.price;
+        });
+
+        animateNumber(totalEl, lastTotal, total);
+        lastTotal = total;
+
+        metaEl.textContent = `${base.name} + ${featureCount} fitur tambahan`;
+        ctaBtn.disabled = false;
+      }
+
+      document.getElementById("ctaBtn").addEventListener("click", () => {
+        if (!selectedBase) return;
+        const base = basePackages.find((p) => p.id === selectedBase);
+        let total = base.price;
+        let lines = [`Halo Ibnu, saya mau tanya-tanya soal pembuatan website.`, ``, `Jenis: ${base.name} (${formatRupiah(base.price)})`];
+
+        if (selectedFeatures.size > 0) {
+          lines.push(``, `Fitur tambahan:`);
+          selectedFeatures.forEach((id) => {
+            const f = getFeatureData(id);
+            if (f) {
+              total += f.price;
+              lines.push(`- ${f.name} (+${formatRupiah(f.price)})`);
+            }
+          });
+        }
+
+        lines.push(``, `Estimasi total: ${formatRupiah(total)}`, ``, `Boleh dibantu jelasin lebih lanjut?`);
+
+        const message = encodeURIComponent(lines.join("\n"));
+        window.open(`https://wa.me/${WA_NUMBER}?text=${message}`, "_blank");
+      });
+
+      renderBase();
+      renderFeatures();
+      updateSummary();
+    </script>
+  </body>
+</html>
