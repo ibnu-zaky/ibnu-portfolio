@@ -19,24 +19,26 @@ let pi = 0,
   ci = 0,
   del = false;
 const te = document.getElementById("typed");
-(function loop() {
-  const cur = phrases[pi];
-  if (!del) {
-    te.textContent = cur.slice(0, ++ci);
-    if (ci === cur.length) {
-      del = true;
-      setTimeout(loop, 1800);
-      return;
+if (te) {
+  (function loop() {
+    const cur = phrases[pi];
+    if (!del) {
+      te.textContent = cur.slice(0, ++ci);
+      if (ci === cur.length) {
+        del = true;
+        setTimeout(loop, 1800);
+        return;
+      }
+    } else {
+      te.textContent = cur.slice(0, --ci);
+      if (ci === 0) {
+        del = false;
+        pi = (pi + 1) % phrases.length;
+      }
     }
-  } else {
-    te.textContent = cur.slice(0, --ci);
-    if (ci === 0) {
-      del = false;
-      pi = (pi + 1) % phrases.length;
-    }
-  }
-  setTimeout(loop, del ? 45 : 95);
-})();
+    setTimeout(loop, del ? 45 : 95);
+  })();
+}
 const obs = new IntersectionObserver(
   (entries) => {
     entries.forEach((e) => {
