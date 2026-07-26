@@ -206,6 +206,7 @@
         font-size: 0.75rem;
         color: var(--muted);
         font-weight: 500;
+        transition: color 0.25s;
       }
       .step-label.active {
         color: var(--accent);
@@ -221,49 +222,63 @@
         background: var(--accent);
       }
 
-      /* ── Step indicator responsive ── */
-      @media (max-width: 600px) {
-        .steps {
-          gap: 2px;
-          margin-bottom: 32px;
-          overflow-x: auto;
-          padding: 0 8px;
-          justify-content: flex-start;
-        }
-        .step-item {
-          flex-shrink: 0;
-          gap: 4px;
-        }
-        .step-dot {
-          width: 28px;
-          height: 28px;
-          font-size: 0.7rem;
-        }
-        .step-label {
-          font-size: 0.65rem;
-          white-space: nowrap;
-        }
-        .step-line {
-          width: 20px;
-          margin: 0 2px;
-        }
+      /* ── Step indicator responsive (mobile only) ── */
+      .steps.is-mobile {
+        gap: 2px;
+        margin-bottom: 32px;
+        overflow-x: hidden;
+        padding: 0 8px;
+        justify-content: center;
+      }
+      .steps.is-mobile .step-item {
+        flex-shrink: 0;
+        gap: 4px;
+      }
+      .steps.is-mobile .step-dot {
+        width: 28px;
+        height: 28px;
+        font-size: 0.7rem;
+      }
+      .steps.is-mobile .step-label {
+        font-size: 0.65rem;
+        white-space: nowrap;
+        opacity: 0;
+        max-width: 0;
+        overflow: hidden;
+        transition: opacity 0.3s, max-width 0.3s;
+      }
+      .steps.is-mobile .step-label.active {
+        opacity: 1;
+        max-width: 60px;
+        color: var(--accent);
+      }
+      .steps.is-mobile .step-line {
+        width: 20px;
+        margin: 0 2px;
       }
       @media (max-width: 380px) {
-        .steps {
+        .steps.is-mobile {
           gap: 0;
+          margin-bottom: 24px;
+          justify-content: center;
         }
-        .step-item {
+        .steps.is-mobile .step-item {
           gap: 2px;
         }
-        .step-dot {
+        .steps.is-mobile .step-dot {
           width: 24px;
           height: 24px;
           font-size: 0.6rem;
         }
-        .step-label {
-          display: none;
+        .steps.is-mobile .step-label {
+          opacity: 0;
+          max-width: 0;
         }
-        .step-line {
+        .steps.is-mobile .step-label.active {
+          opacity: 1;
+          max-width: 60px;
+        }
+        .steps.is-mobile .step-line {
           width: 12px;
           margin: 0 2px;
         }
@@ -1348,6 +1363,17 @@
         .addEventListener("keydown", (e) => {
           if (e.key === "Enter") startApp();
         });
+
+      const steps = document.querySelector(".steps");
+      const mobileLayoutQuery = window.matchMedia("(max-width: 600px)");
+
+      function updateStepsLayout() {
+        if (!steps) return;
+        steps.classList.toggle("is-mobile", mobileLayoutQuery.matches);
+      }
+
+      mobileLayoutQuery.addEventListener("change", updateStepsLayout);
+      updateStepsLayout();
 
       // ── Add Ingredient ──
       function addIngredient() {
