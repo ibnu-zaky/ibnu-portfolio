@@ -221,6 +221,54 @@
         background: var(--accent);
       }
 
+      /* ── Step indicator responsive ── */
+      @media (max-width: 600px) {
+        .steps {
+          gap: 2px;
+          margin-bottom: 32px;
+          overflow-x: auto;
+          padding: 0 8px;
+          justify-content: flex-start;
+        }
+        .step-item {
+          flex-shrink: 0;
+          gap: 4px;
+        }
+        .step-dot {
+          width: 28px;
+          height: 28px;
+          font-size: 0.7rem;
+        }
+        .step-label {
+          font-size: 0.65rem;
+          white-space: nowrap;
+        }
+        .step-line {
+          width: 20px;
+          margin: 0 2px;
+        }
+      }
+      @media (max-width: 380px) {
+        .steps {
+          gap: 0;
+        }
+        .step-item {
+          gap: 2px;
+        }
+        .step-dot {
+          width: 24px;
+          height: 24px;
+          font-size: 0.6rem;
+        }
+        .step-label {
+          display: none;
+        }
+        .step-line {
+          width: 12px;
+          margin: 0 2px;
+        }
+      }
+
       /* ── Cards ── */
       .card {
         background: var(--card);
