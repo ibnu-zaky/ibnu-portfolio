@@ -2,6 +2,10 @@
   "name": "ibnu-portfolio",
   "module": "index.ts",
   "type": "module",
+  "scripts": {
+    "dev": "bun run --watch index.ts",
+    "start": "bun run index.ts"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
@@ -9,6 +13,7 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "elysia": "^1.4.29"
+    "elysia": "^1.4.29",
+    "@elysiajs/static": "^1.2.0"
   }
 }
