@@ -11,6 +11,7 @@ A personal portfolio website showcasing the skills, experiences, and projects of
 - **Dark Mode / Theme Support**: Built-in styling for a comfortable viewing experience.
 - **Dynamic Projects**: Interactive filter to sort projects by categories (Front End, Apps Design, Team Work).
 - **Working Contact Form**: Integrated seamlessly using Netlify Forms.
+- **Smooth Scrolling**: Implemented using Lenis for a fluid and native-feeling scroll experience.
 - **SEO Optimized**: Utilizing proper metadata and semantic HTML.
 - **Tools & Blog**: Additional pages for insights, a Web Price Calculator, and an HPP Calculator.
 
@@ -18,6 +19,7 @@ A personal portfolio website showcasing the skills, experiences, and projects of
 
 - **HTML5 & CSS3** for robust structure and beautiful styling.
 - **Vanilla JavaScript** for dynamic interactivity and DOM manipulation.
+- **Lenis** for smooth and momentum-based scrolling.
 - **FontAwesome** for scalable and accessible icons.
 - **Google Fonts** (Syne & DM Sans) for premium and modern typography.
 - Hosted and deployed on **Netlify**.
